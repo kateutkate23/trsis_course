@@ -1,0 +1,86 @@
+body#LoginForm {
+    background-color: #e9e9e9;
+}
+
+.form-heading {
+    color: #333;
+    font-size: 24px;
+}
+
+.panel h2 {
+    color: #555555;
+    font-size: 20px;
+    margin: 0 0 10px 0;
+}
+
+.panel p {
+    color: #666666;
+    font-size: 15px;
+    margin-bottom: 25px;
+    line-height: 26px;
+}
+
+.login-form .form-control {
+    background: #fafafa;
+    border: 1px solid #c4c4c4;
+    border-radius: 6px;
+    font-size: 15px;
+    height: 48px;
+    line-height: 48px;
+}
+
+.main-div {
+    background: #fff;
+    border-radius: 4px;
+    margin: 15px auto 25px;
+    max-width: 40%;
+    padding: 45px 65px 65px 65px;
+}
+
+.login-form .form-group {
+    margin-bottom: 12px;
+}
+
+.login-form {
+    text-align: center;
+}
+
+.forgot a {
+    color: #555555;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.forgot a:hover {
+    color: #333;
+}
+
+.login-form .btn.btn-primary {
+    font-size: 15px;
+    width: 100%;
+    height: 48px;
+    line-height: 48px;
+    padding: 0;
+}
+
+.forgot {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.back {
+    text-align: left;
+    margin-top: 15px;
+}
+
+.back a {
+    color: #555555;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.back a:hover {
+    color: #333;
+}
