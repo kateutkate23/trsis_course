@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - changeSet:
+      id: init-database
+      author: Kate
+      preConditions:
+        - onFail: HALT
+          not:
+            tableExists:
+              tableName: apartments
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: apartment_ID
+                  name: ID
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: city
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: address
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: price
+                  type: BIGINT
+            tableName: apartments

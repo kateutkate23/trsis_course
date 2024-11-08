@@ -11,6 +11,11 @@
   <component name="ChangeListManager">
     <list default="true" id="9fb7c385-f28c-4a1c-bea3-b5f0d1fa8baf" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/../lab2.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../lab2.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../~$lab2.docx" beforeDir="false" />
+>>>>>>> ade75993fd245a7da2ba6603681d8adbd0126925
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +62,11 @@
     "Tomcat Server.Tomcat 10.1.30.executor": "Run",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
+<<<<<<< HEAD
     "last_opened_file_path": "C:/Users/kate_utkate/Desktop/suai/trsis/lab4",
+=======
+    "last_opened_file_path": "C:/Users/1/Desktop/suai/trsis_course/lab3",
+>>>>>>> ade75993fd245a7da2ba6603681d8adbd0126925
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -151,7 +160,6 @@
         </SHUTDOWN>
       </ConfigurationWrapper>
       <method v="2">
-        <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="lab1:war exploded" />
         </option>
@@ -161,8 +169,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.22855.74" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.22855.74" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
       </set>
     </attachedChunks>
   </component>
@@ -179,9 +187,17 @@
       <workItem from="1726821075392" duration="437000" />
       <workItem from="1726829809727" duration="6367000" />
       <workItem from="1726838970634" duration="720000" />
+<<<<<<< HEAD
       <workItem from="1726850951222" duration="1226000" />
       <workItem from="1727520744563" duration="134000" />
       <workItem from="1731059475397" duration="176000" />
+=======
+      <workItem from="1727298654789" duration="170000" />
+      <workItem from="1727447465852" duration="1547000" />
+      <workItem from="1727521630922" duration="78000" />
+      <workItem from="1729250473653" duration="459000" />
+      <workItem from="1729251750410" duration="11000" />
+>>>>>>> ade75993fd245a7da2ba6603681d8adbd0126925
     </task>
     <servers />
   </component>

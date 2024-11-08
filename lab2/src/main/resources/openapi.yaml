@@ -1,0 +1,129 @@
+openapi: 3.0.3
+info:
+  description: REST API for lab2
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Apartment rent OpenAPI
+  version: 1.0.0
+servers:
+- description: developer's server
+  url: http://localhost:8080/
+tags:
+- description: Apartment methods
+  name: Apartment
+paths:
+  /apartments:
+    get:
+      description: get all the apartments
+      operationId: getApartment
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Apartment'
+                type: array
+          description: ok
+        "500":
+          description: server's error
+      summary: get the list of all apartments
+      tags:
+      - Apartment
+      x-accepts:
+      - application/json
+      x-tags:
+      - tag: Apartment
+  /add:
+    post:
+      description: add new apartment
+      operationId: addApartment
+      parameters:
+      - description: city
+        explode: true
+        in: query
+        name: city
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: address
+        explode: true
+        in: query
+        name: address
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: price per month
+        explode: true
+        in: query
+        name: price
+        required: true
+        schema:
+          type: integer
+        style: form
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Apartment'
+          description: info about added apartment
+        "500":
+          description: server's error
+      summary: add an appartment
+      tags:
+      - Apartment
+      x-accepts:
+      - application/json
+      x-tags:
+      - tag: Apartment
+  /delete:
+    delete:
+      description: delete apartment by id
+      operationId: deleteApartment
+      parameters:
+      - description: id
+        explode: true
+        in: query
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Apartment'
+          description: info about deleted apartment
+        "404":
+          description: not found
+      summary: delete an apartment
+      tags:
+      - Apartment
+      x-accepts:
+      - application/json
+      x-tags:
+      - tag: Apartment
+components:
+  schemas:
+    Apartment:
+      example:
+        city: Saint-Petersburg
+        address: Marshala Zhukova avenue 24
+        price: 2400
+      properties:
+        city:
+          description: apartment's city
+          type: string
+        address:
+          description: apartment's address
+          type: string
+        price:
+          description: rent's price per month
+          type: integer
+      type: object
