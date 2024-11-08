@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <meta name="_csrf" content="${_csrf.token}" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.parameterName}" th:content="${_csrf.parameterName}"/>
+
+    <title th:text="#{apartments.title}">Сдача квартир в аренду</title>
+
+    <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <script src="../static/js/angular.js" th:src="@{js/angular.js}"></script>
+    <script src="../static/js/jquery-3.7.1.slim.min.js" th:src="@{js/jquery-3.7.1.slim.min.js}"></script>
+    <script src="../static/js/bootstrap.js" th:src="@{js/bootstrap.js}"></script>
+    <script src="../static/js/apartments.js" th:src="@{js/apartments.js}"></script>
+
+    <style>
+        body {
+            background-color: #f0f2f5; /* Более светлый и современный фон */
+            font-family: 'Roboto', sans-serif; /* Изменен шрифт на Roboto */
+            padding: 40px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        .form-heading {
+            font-size: 1.8rem;
+            color: #34495e;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+        .table-container {
+            margin-top: 40px;
+        }
+        .form-control {
+            border-radius: 8px;
+            font-size: 1rem;
+            padding: 10px;
+            border: 1px solid #ced4da;
+        }
+        .btn {
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            transition: background-color 0.2s ease;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+        .alert {
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+        .table th {
+            background-color: #007bff;
+            color: #fff;
+            font-size: 1rem;
+            text-align: center;
+        }
+        .table td {
+            text-align: center;
+            vertical-align: middle;
+            font-size: 1rem;
+        }
+        .thead-dark th {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .table-hover tbody tr:hover {
+            background-color: #f2f2f2;
+        }
+        label {
+            font-size: 1rem;
+            color: #495057;
+            margin-bottom: 5px;
+        }
+        input::placeholder {
+            color: #adb5bd;
+            font-style: italic;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body ng-app="apartments" ng-controller="ApartmentsController">
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+        <h1 th:text="#{apartments.title}">Список квартир для сдачи в аренду</h1>
+        <div>
+            <div sec:authorize="isAnonymous()">
+                <a href="/login" class="btn btn-primary" th:text="#{apartments.login}">Login</a>
+            </div>
+            <div sec:authorize="isAuthenticated()">
+                <form name="logoutForm" th:action="@{/logout}" method="post" style="display: inline;">
+                    <input type="submit" class="btn btn-danger" th:value="#{apartments.logout}">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-container" ng-controller="getApartments" ng-show="apartmentsList.length > 0">
+        <table id="apartmentsTable" class="table table-hover table-bordered table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th th:text="#{apartments.id}">ID</th>
+                <th th:text="#{apartments.city}">Город</th>
+                <th th:text="#{apartments.address}">Адрес</th>
+                <th th:text="#{apartments.price}">Цена, руб./мес</th>
+                <th th:text="#{apartments.actions}">Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="apartment in apartmentsList" id="{{apartment.id}}">
+                <td>{{apartment.id}}</td>
+                <td>{{apartment.city}}</td>
+                <td>{{apartment.address}}</td>
+                <td>{{apartment.price}}</td>
+                <td>
+                    <div sec:authorize="isAuthenticated()">
+                        <button class="btn btn-danger btn-sm" ng-click="deleteApartment(apartment.id)" th:text="#{apartments.delete}">Удалить</button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="alert alert-danger" role="alert" ng-show="errormessage">{{errormessage}}</div>
+
+    <div class="mt-4" sec:authorize="isAuthenticated()">
+        <form role="form" ng-submit="addApartment()">
+            <h3 class="form-heading" th:text="#{apartments.addApartment}">Добавить квартиру для сдачи</h3>
+            <div class="form-group">
+                <label for="inputCity" th:text="#{apartments.city}">Город</label>
+                <input type="text" class="form-control" id="inputCity" name="inputCity" placeholder="Город" ng-model="inputCity" required>
+            </div>
+            <div class="form-group">
+                <label for="inputAddress" th:text="#{apartments.address}">Адрес</label>
+                <input type="text" class="form-control" id="inputAddress" name="inputAddress" ng-model="inputAddress" placeholder="Адрес" required>
+            </div>
+            <div class="form-group">
+                <label for="inputPrice" th:text="#{apartments.price}">Цена, руб./мес</label>
+                <input type="number" class="form-control" id="inputPrice" name="inputPrice" ng-model="inputPrice" placeholder="Цена, руб./мес" required>
+            </div>
+            <button type="submit" class="btn btn-primary" th:text="#{apartments.addApartment}">Добавить</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
