@@ -18,5 +18,4 @@ public class Application {
         SpringApplication app = new SpringApplicationBuilder(Application.class).build();
         app.run(args);
     }
-
 }
